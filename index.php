@@ -1,3 +1,36 @@
+<?php require_once "controllerUserData.php"; ?>
+<?php 
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+$name= $_SESSION['name'];
+$address= $_SESSION['address'];
+
+
+
+
+if($email != false && $password != false){
+    $sql = "SELECT * FROM usertable WHERE email = '$email'";
+    $run_Sql = mysqli_query($con, $sql);
+    if($run_Sql){
+        $fetch_info = mysqli_fetch_assoc($run_Sql);
+        $status = $fetch_info['status'];
+        $code = $fetch_info['code'];
+        if($status == "verified"){
+            if($code != 0){
+                header('Location: reset-code.php');
+            }
+        }else{
+            header('Location: user-otp.php');
+        }
+    }
+}else{
+    header('Location: login-user.php');
+}
+$name = "SELECT * FROM usertable WHERE email = '$email'";
+$res = mysqli_query($con, $name);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,22 +54,25 @@
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="index.html"><img src="images/logo.png" width="125px"></a>
+                    <a href="index.php"><img src="images/logo.png" width="125px"></a>
                 </div>
                 <nav>
                     <ul id="MenuItems">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="product.html">Products</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="product.php">Products</a></li>
                         <li><a href="#About">About</a></li>
-                        <li><a href="#Contacts">Contact</a></li>
-                        <li><a href="account.html">Account</a></li>
+                        <li><a href="account.php">Account</a></li>
+                        <li><a href="contact.php">Contact</a></li>
+                        <li><a href="profile.php"><?php while($row = $res->fetch_assoc()) {
+    echo $row['name']."<br>";
+} ?></a></li>
                     </ul>
                 </nav>
-                <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+                <a href="cart.php"><img src="images/cart.png" width="30px" height="30px"></a>
                 <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
             </div>
 
-            
+
             <div class="row">
                 <div class="col-2">
                     <h1>Give Your Workout<br>A New Style!</h1>
@@ -80,7 +116,9 @@
         <div class="row">
             <div class="col-4">
                 <a href="product-details.html"><img src="images/product-1.jpg"></a>
-                <a href="product-details.html"><h4>Red Printed T-shirts</h4></a>
+                <a href="product-details.html">
+                    <h4>Red Printed T-shirts</h4>
+                </a>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -372,18 +410,17 @@
 
     <!---------------js for toggle menu ------------->
     <script>
-        var MenuItems = document.getElementById("MenuItems");
+    var MenuItems = document.getElementById("MenuItems");
 
-        MenuItems.style.maxHeight = "0px";
+    MenuItems.style.maxHeight = "0px";
 
-        function menutoggle() {
-            if (MenuItems.style.maxHeight == "0px") {
-                MenuItems.style.maxHeight = "200px";
-            }
-            else {
-                MenuItems.style.maxHeight == "0px";
-            }
+    function menutoggle() {
+        if (MenuItems.style.maxHeight == "0px") {
+            MenuItems.style.maxHeight = "200px";
+        } else {
+            MenuItems.style.maxHeight == "0px";
         }
+    }
     </script>
 
 </body>

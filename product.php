@@ -23,11 +23,11 @@
             </div>
             <nav>
                 <ul id="MenuItems">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product.html">Products</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="product.php">Products</a></li>
                     <li><a href="#About">About</a></li>
                     <li><a href="#Contacts">Contact</a></li>
-                    <li><a href="account.html">Account</a></li>
+                    <li><a href="account.php">Account</a></li>
                 </ul>
             </nav>
             <img src="images/cart.png" width="30px" height="30px">
