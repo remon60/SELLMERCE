@@ -14,9 +14,8 @@ session_start();
     <link rel="icon" href="assets/images/favicon.png">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/main.css">
 
-    <link rel="stylesheet" href="assets/css/adlog.css">
+    <link rel="stylesheet" href="adlog.css">
 </head>
 
 <body id="ad_main" style="background-color:black; position: relative;">
